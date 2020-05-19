@@ -56,10 +56,10 @@
 #include <QtNetwork>
 #include <QUrl>
 
-#if QT_CONFIG(ssl)
-const char defaultUrl[] = "https://www.qt.io/";
+#if QT_CONFIG(ssl)                                 // разобрать
+const char defaultUrl[] = "http://rapsinews.ru/";    // меняю адрес сайта источника , ssl игнорируется
 #else
-const char defaultUrl[] = "http://www.qt.io/";
+const char defaultUrl[] = "http://rapsinews.ru/";    // меняю адрес сайта источника
 #endif
 const char defaultFileName[] = "index.html";
 
@@ -112,7 +112,7 @@ HttpWindow::HttpWindow(QWidget *parent)
     connect(urlLineEdit, &QLineEdit::textChanged,
             this, &HttpWindow::enableDownloadButton);
     formLayout->addRow(tr("&URL:"), urlLineEdit);
-    QString downloadDirectory = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
+    QString downloadDirectory = "D:/Temp";                            // меняю путь сохранения
     if (downloadDirectory.isEmpty() || !QFileInfo(downloadDirectory).isDir())
         downloadDirectory = QDir::currentPath();
     downloadDirectoryLineEdit->setText(QDir::toNativeSeparators(downloadDirectory));
